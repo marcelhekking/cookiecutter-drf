@@ -39,10 +39,10 @@ build:
 	sudo docker build -t {{cookiecutter.project_slug}}-web:latest -f Dockerfile .
 
 up:
-	fish -c 'envsource .env_var; and docker compose -f docker-compose.yml up -d'
+	fish -c 'envsource .env_var; and docker compose -p {{cookiecutter.project_slug}} -f docker-compose.yml up -d'
 
 down:
-	fish -c 'envsource .env_var; and docker compose -f docker-compose.yml down'
+	fish -c 'envsource .env_var; and docker compose -p {{cookiecutter.project_slug}} -f docker-compose.yml down'
 
 sh:
 	docker exec -it cookiecutter-drf-web-1 sh
