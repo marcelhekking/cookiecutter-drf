@@ -1,0 +1,10 @@
+{
+  "project_name": "Your project name",
+  "description": "A Django Wagtail project hosted on DigitalOcean, with CI/CD pipelines and Docker",
+  "project_slug": "onewordnointerpunction",
+  "author_first_name": "John",
+  "author_last_name": "Doe",
+  "author_email": "admin@damin.com",
+  "_copy_without_render": ["backend/src/static", "backend/src/templates"]
+
+}
