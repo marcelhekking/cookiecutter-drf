@@ -1,6 +1,6 @@
 {
   "project_name": "Your project name",
-  "description": "A cookiecutter template for a full-stack DRF web application with a backend and frontend.",
+  "description": "A cookiecutter template for a full-stack DRF web application with a backend and frontend",
   "project_slug": "onewordnointerpunction",
   "author_first_name": "John",
   "author_last_name": "Doe",
