@@ -17,7 +17,7 @@ ROOT_DIR = DJANGO_PROJECT_DIR.parent.parent
 
 
 ADMINS = [
-    ("marcel", "marcelhekking@gmail.com"),
+    ("{{cookiecutter.author_first_name.lower()}}", "{{cookiecutter.author_email.lower()}}"),
 ]
 
 SECRET_KEY = os.getenv("SECRET_KEY", "a key")
