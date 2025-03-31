@@ -1,4 +1,4 @@
-# Cookiecutter template for creating a Wagtail project with Tailwind CSS
+# Cookiecutter template for starting a Django restful API application
 
 ## Introduction
 
