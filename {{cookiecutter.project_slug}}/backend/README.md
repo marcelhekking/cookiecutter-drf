@@ -28,7 +28,7 @@ make runserver
 
 ### Development
 
-Ruff is used for Python formatting. To prevent unstyled Python code to enter a Git repo, [pre-commit](https://pre-commit.com/) is used
+Ruff is used for Python formatting and linting. To prevent unstyled Python code to enter a Git repo, [pre-commit](https://pre-commit.com/) is used
 
 #### Installing Pre-commit
 
@@ -50,7 +50,7 @@ With Docker, you can start a container in production mode.
 
 ### Setting up Nginx
 
-In production, the container starts a gunicorn server serving all Django requests. Nginx can then be configured to run as a proxy-server on your machine to forward all requests to this gunicorn server while serving the media- and staticfiles by its own. Example Nginx config:
+The container starts a gunicorn server downstreams serving all Django requests. Nginx can then be configured to run as a proxy-server on your machine to forward all requests to the gunicorn server while serving the media- and staticfiles by its own. Example Nginx config (this assumes that `omni.local` has been added to the hosts file on your machine):
 
 ```bash
 server {
@@ -66,11 +66,11 @@ server {
     }
 
     location /static/ {
-        alias /home/marcel/www/omni/public/staticfiles/;
+        alias /home/<user home folder>/www/omni/public/staticfiles/;
     }
 
     location /media/ {
-        alias /home/marcel/www/omni/public/mediafiles/;
+        alias /home/<user home folder>/www/omni/public/mediafiles/;
     }
 }
 ```
@@ -79,7 +79,7 @@ server {
 
 In the Docker files, a physical volume on the host is linked with folders inside Docker. The web Docker performs actions under GI 1024 (e.g., running `collectstatic`).  To avoid permission errors:
 
-- Create a static files and mediafiles folder on your machine (default is `~/www/omni/public/mediafiles/`, and `~/www/omni/public/staticfiles/`),
+- Create a static files and mediafiles folder on your machine (defaults are `~/www/omni/public/mediafiles/`, and `~/www/omni/public/staticfiles/` which work with the sample Nginx configuration file as shown above),
 - Set correct permission of the folder.
 
 This can be done with:
