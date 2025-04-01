@@ -1,6 +1,7 @@
 from django.conf import settings
-from django.contrib.auth.models import User
 from django.core.management.base import BaseCommand
+
+from {{cookiecutter.project_slug}}.users.models import User
 
 
 class Command(BaseCommand):
@@ -11,9 +12,7 @@ class Command(BaseCommand):
                 email = user[1]
                 password = "OnlyValidLocally"
                 print("Creating account for %s (%s)" % (username, email))
-                admin = User.objects.create_superuser(
-                    email=email, username=username, password=password
-                )
+                admin = User.objects.create_superuser(email=email, username=username, password=password)
                 admin.is_active = True
                 admin.is_superuser = True
                 admin.save()
