@@ -45,10 +45,10 @@ down:
 	fish -c 'envsource .env_var; and docker compose -p {{cookiecutter.project_slug}} -f docker-compose.yml down'
 
 sh:
-	docker exec -it cookiecutter-drf-web-1 sh
+	docker exec -it {{cookiecutter.project_slug}} sh
 
 shell:
-	docker exec -it cookiecutter-drf-web-1 python manage.py shell
+	docker exec -it {{cookiecutter.project_slug}} python manage.py shell
 
 public:
 	mkdir -p ~/www/omni/public/mediafiles
