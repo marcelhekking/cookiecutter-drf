@@ -33,8 +33,11 @@ DEBUG = os.getenv("DEBUG", False)
 INSTALLED_APPS = [
     # project apps...
     "{{cookiecutter.project_slug}}",
-    "{{cookiecutter.project_slug}}.home",
-    # django apps...
+    "{{cookiecutter.project_slug}}.users",
+    # Third party apps
+    "rest_framework",  # utilities for rest apis
+    "rest_framework.authtoken",  # token authentication
+    # Django apps...
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.sites",
@@ -113,5 +116,24 @@ USE_TZ = True
 LOCALE_PATHS = (str(SRC_DIR / "locale"),)
 
 LOGIN_REDIRECT_URL = "/"
-LOGIN_URL = reverse_lazy("auth_login")
 
+# Custom user app
+AUTH_USER_MODEL = "users.User"
+
+# Django Rest Framework
+REST_FRAMEWORK = {
+    "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
+    "PAGE_SIZE": int(os.getenv("DJANGO_PAGINATION_LIMIT", 10)),
+    "DATETIME_FORMAT": "%Y-%m-%dT%H:%M:%S%z",
+    "DEFAULT_RENDERER_CLASSES": (
+        "rest_framework.renderers.JSONRenderer",
+        "rest_framework.renderers.BrowsableAPIRenderer",
+    ),
+    "DEFAULT_PERMISSION_CLASSES": [
+        "rest_framework.permissions.IsAuthenticated",
+    ],
+    "DEFAULT_AUTHENTICATION_CLASSES": (
+        "rest_framework.authentication.SessionAuthentication",
+        "rest_framework.authentication.TokenAuthentication",
+    ),
+}
