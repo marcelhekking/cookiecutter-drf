@@ -47,7 +47,9 @@ jobs:
       uses: astral-sh/setup-uv@v5
       with:
         enable-cache: true
-        cache-dependency-glob: pyproject.toml, uv.lock
+        cache-dependency-glob: |
+          **/uv.lock
+          **/pyproject.toml
 
     - name: Test web image
       run: |
