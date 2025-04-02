@@ -35,6 +35,8 @@ INSTALLED_APPS = [
     "{{cookiecutter.project_slug}}",
     "{{cookiecutter.project_slug}}.users",
     # Third party apps
+    "django_celery_beat",
+    "django_celery_results",
     "rest_framework",  # utilities for rest apis
     "rest_framework.authtoken",  # token authentication
     # Django apps...
@@ -100,10 +102,10 @@ WSGI_APPLICATION = "{{cookiecutter.project_slug}}.wsgi.application"
 
 FIXTURE_DIRS = Path(ROOT_DIR) / "tests"
 
+DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
+
 # Internationalization
 # https://docs.djangoproject.com/en/dev/topics/i18n/
-
-
 TIME_ZONE = "Europe/Amsterdam"
 USE_I18N = True
 
@@ -137,3 +139,15 @@ REST_FRAMEWORK = {
         "rest_framework.authentication.TokenAuthentication",
     ),
 }
+
+# Celery
+# save Celery task results in Django's database
+CELERY_RESULT_BACKEND = "django-db"
+
+# This configures Redis as the datastore between Django + Celery
+CELERY_BROKER_URL = os.getenv(
+    "CELERY_BROKER_REDIS_URL", default="redis://localhost:6379"
+)
+
+# this allows you to schedule items in the Django admin.
+CELERY_BEAT_SCHEDULER = "django_celery_beat.schedulers.DatabaseScheduler"

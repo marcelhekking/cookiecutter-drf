@@ -92,3 +92,16 @@ ruff_fix:
 	uv run ruff check src tests --target-version=py313 --exclude=migrations --fix
 
 
+#
+# Celery / Redis
+#
+celery:
+	celery -A {{cookiecutter.project_slug}} worker -l info --beat
+
+redis_up:
+	docker compose -f docker-compose-redis-only.yml up -d
+
+redis_down:
+	docker compose -f docker-compose-redis-only.yml down
+
+start_celery: redis_up celery
