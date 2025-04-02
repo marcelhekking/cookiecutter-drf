@@ -3,7 +3,7 @@ env:
   BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
   WEB_IMAGE: ghcr.io/$(echo $GITHUB_REPOSITORY | tr '[:upper:]' '[:lower:]')/web
   MEDIAFILES_HOST: /home/public/mediafiles
-  STATICFIlES_HOST: /home/public/staticfiles
+  STATICFILES_HOST: /home/public/staticfiles
 
 on:
   push:
