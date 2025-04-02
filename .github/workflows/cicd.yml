@@ -1,6 +1,7 @@
 name: CI
 env:
   BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
+  WEB_IMAGE: backend
   MEDIAFILES_HOST: /home/public/mediafiles
   STATICFILES_HOST: /home/public/staticfiles
 
@@ -40,8 +41,8 @@ jobs:
     - name: Make uv lock file and Build image
       run: |
         uv lock
-        docker build -t backend-web:latest -f Dockerfile .
+        docker build -t ${{ env.WEB_IMAGE }}:latest -f Dockerfile .
 
     - name: Test web image
       run: |
-        docker compose -p backend -f docker-compose.yml run --rm web sh -c "python -m pytest ../tests/"
+        docker compose -p ${{ env.WEB_IMAGE }} -f docker-compose.yml run --rm web sh -c "python -m pytest ../tests/"
