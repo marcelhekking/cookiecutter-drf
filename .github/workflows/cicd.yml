@@ -31,8 +31,10 @@ jobs:
 
     - name: Install uv
       uses: astral-sh/setup-uv@v5
+      with:
+        enable-cache: false
 
-    - name: Run cookiecuutter on repo
+    - name: Run cookiecutter on repo
       working-directory: ./
       run: |
         uv pip install cookiecutter --system
