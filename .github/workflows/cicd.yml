@@ -33,7 +33,7 @@ jobs:
     - name: Run cookiecuutter on repo
       working-directory: ./
       run: |
-        uv pip install cookiecutter
+        uv pip install cookiecutter --system
         cookiecutter gh:marcelhekking/cookiecutter-drf --checkout $BRANCH_NAME --no-input
 
     - name: Make uv lock file and Build image
