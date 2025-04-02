@@ -14,6 +14,10 @@ jobs:
     name: Coookiecutter the project and run tests on web image
     runs-on: ubuntu-latest
 
+    defaults:
+      run:
+        working-directory: ./onewordnointerpunction/backend
+
     steps:
     - name: Checkout main branch
       uses: actions/checkout@v4
@@ -32,8 +36,8 @@ jobs:
 
     - name: Build image
       run: |
-        docker build -t ${{ env.WEB_IMAGE }}:latest -f /home/runner/work/cookiecutter-drf/cookiecutter-drf/onewordnointerpunction/Dockerfile .
+        docker build -t ${{ env.WEB_IMAGE }}:latest -f Dockerfile .
 
     - name: Test web image
       run: |
-        docker compose -f /home/runner/work/cookiecutter-drf/cookiecutter-drf/onewordnointerpunction/docker-compose.yml run --rm web sh -c "python -m pytest ../tests/"
+        docker compose -f docker-compose.yml run --rm web sh -c "python -m pytest ../tests/"
