@@ -38,6 +38,12 @@ jobs:
         uv pip install cookiecutter --system
         cookiecutter gh:marcelhekking/cookiecutter-drf --checkout $BRANCH_NAME --no-input
 
+    - name: Define a cache dependency glob
+      uses: astral-sh/setup-uv@v5
+      with:
+        enable-cache: true
+        cache-dependency-glob: pyproject.toml, uv.lock
+
     - name: Make uv lock file and Build image
       run: |
         uv lock
