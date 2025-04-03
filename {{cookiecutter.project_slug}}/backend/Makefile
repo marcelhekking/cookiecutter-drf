@@ -10,6 +10,9 @@ clean:
 	find . -name '__pycache__' -delete
 	find . -name '*.egg-info' | xargs rm -rf
 
+#
+# Django development server
+#
 rebuild:
 	dropdb --if-exists $(DATABASE_NAME)
 	createdb $(DATABASE_NAME)
@@ -35,6 +38,20 @@ runserver:
 test:
 	uv run pytest tests/ -vvv
 
+#
+# Docker
+#
+public:
+	mkdir -p ./public/staticfiles
+	mkdir -p ./public/mediafiles
+	# 1024 is the group id of the docker container
+	sudo chown -R :1024 ./public/mediafiles
+	sudo chmod -R 775 ./public/mediafiles
+	sudo chmod g+s ./public/mediafiles
+	sudo chown -R :1024 ./public/staticfiles
+	sudo chmod -R 775 ./public/staticfiles
+	sudo chmod g+s ./public/staticfiles
+
 build:
 	sudo docker build -t {{cookiecutter.project_slug}}-web:latest -f Dockerfile .
 
@@ -49,19 +66,6 @@ sh:
 
 shell:
 	docker exec -it {{cookiecutter.project_slug}} python manage.py shell
-
-public:
-	mkdir -p ~/www/omni/public/mediafiles
-	mkdir -p ~/www/omni/public/staticfiles
-
-1024:
-	# 1024 is the group id of the docker container
-	sudo chown -R :1024 ~/www/omni/public/mediafiles
-	sudo chmod -R 777 ~/www/omni/public/mediafiles
-	sudo chmod g+s ~/www/omni/public/mediafiles
-	sudo chown -R :1024 ~/www/omni/public/staticfiles
-	sudo chmod -R 777 ~/www/omni/public/staticfiles
-	sudo chmod g+s ~/www/omni/public/staticfiles
 
 #
 # Format / Lint targets
@@ -91,7 +95,6 @@ ruff_check:
 ruff_fix:
 	uv run ruff check src tests --target-version=py313 --exclude=migrations --fix
 
-
 #
 # Celery / Redis
 #
@@ -105,3 +108,18 @@ redis_down:
 	docker compose -f docker-compose-redis-only.yml down
 
 start_celery: redis_up celery
+
+#
+# Nginx
+#
+nginx_up:
+	docker compose -p {{cookiecutter.project_slug}} -f docker-compose-nginx-only.yml up -d
+nginx_down:
+	docker compose -p {{cookiecutter.project_slug}} -f docker-compose-nginx-only.yml down
+
+#
+# Docker / Nginx
+#
+start: nginx_up up
+
+stop: nginx_down down

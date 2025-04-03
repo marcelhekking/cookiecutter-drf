@@ -11,8 +11,8 @@ POSTGRES_USER=postgres
 POSTGRES_PASSWORD=a_secret_password
 
 WEB_IMAGE={{cookiecutter.project_slug}}-web:latest
-MEDIAFILES_HOST=~/www/omni/public/mediafiles/
-STATICFILES_HOST=~/www/omni/public/staticfiles/
+MEDIAFILES_HOST=current_working_dir/public/mediafiles/
+STATICFILES_HOST=current_working_dir/public/staticfiles/
 """
 
 # Define the path to the file where the original working directory is stored
