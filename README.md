@@ -4,6 +4,24 @@
 
 This repo is a cookiecutter template to create a Django restful API application based on the [Django REST framework](<https://www.django-rest-framework.org/>). The application structure is that of a mono repo holding both the backend as well as the frontend part of the applicaton. Moreover, [Sphinx](<https://www.sphinx-doc.org/en/master/>) is installed to enable the documentation of the project.
 
+## What's included?
+
+- [Django REST framework](<https://www.django-rest-framework.org/>)
+- Documentation with [Sphinx](<https://www.sphinx-doc.org/en/master/>)
+- Dependency management with [uv](https://docs.astral.sh/uv/)
+- [Pre-commit](https://pre-commit.com/) hooks
+- A selection of [Make](https://www.gnu.org/software/make/) commands to control various aspect of the application
+- [Docker](https://www.docker.com/) and [docker compose](https://docs.docker.com/compose/) to start a production container locally
+- [Celery](https://github.com/celery/celery) and [Celery Beat](https://docs.celeryq.dev/en/latest/userguide/periodic-tasks.html) for kicking off period (asynchronous) tasks
+- [Django Celery Results](https://github.com/celery/django-celery-results) for capturing Celery tasks in the database
+- [Redis](https://redis.io/) via a contianer
+- [Nginx](https://nginx.org/) via a container to function as a reverse-proxy for the [Gunicorn](https://gunicorn.org/) Django server upstreams
+- [Ruff](https://docs.astral.sh/ruff/) for Python linting and formatting
+- [Pytest](https://docs.pytest.org/en/stable/) for testing
+- [Ctrl-z](https://ctrl-z.readthedocs.io/en/latest/) for making backups of the [PostgreSQL](https://www.postgresql.org/) database
+- [Django debug toolbar](https://django-debug-toolbar.readthedocs.io/en/latest/) for...well...debugging
+
+
 ## How to install this template
 
 First install [uv](https://docs.astral.sh/uv/#installation) on your system and then run:
