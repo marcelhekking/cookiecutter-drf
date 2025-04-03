@@ -48,63 +48,25 @@ pre-commit run --all-files
 
 With Docker, you can start a container in production mode.
 
-### Setting up Nginx
+### First time running
 
-The container starts a gunicorn server downstreams serving all Django requests. Nginx can then be configured to run as a proxy-server on your machine to forward all requests to the gunicorn server while serving the media- and staticfiles by its own. Example Nginx config (this assumes that `omni.local` has been added to the hosts file on your machine):
+- Install dependencies: `uv sync`
+- Create public directory for mediafiles and staticfiles: `make public`
+- Create the build: `make build`
+- Start the containers: `make start`
 
-```bash
-server {
-    gzip            off;
-    server_name     omni.local;
+To stop and remove all containers: `make stop`
 
-    location / {
-        proxy_pass http://localhost:8000/;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header Host $host;
-        proxy_redirect off;
-        client_max_body_size 100M;
-    }
+### Starting containers after first time running
 
-    location /static/ {
-        alias /home/<user home folder>/www/omni/public/staticfiles/;
-    }
+For subsequent starts of the containers use: `make start`
 
-    location /media/ {
-        alias /home/<user home folder>/www/omni/public/mediafiles/;
-    }
-}
-```
+### Start Celery and Redis
 
-### Create public static and media folders
+You can start a container that spins op Celery and Redis which allows you to run (asynchronous) tasks
 
-In the Docker files, a physical volume on the host is linked with folders inside Docker. The web Docker performs actions under GI 1024 (e.g., running `collectstatic`).  To avoid permission errors:
-
-- Create a static files and mediafiles folder on your machine (defaults are `~/www/omni/public/mediafiles/`, and `~/www/omni/public/staticfiles/` which work with the sample Nginx configuration file as shown above),
-- Set correct permission of the folder.
-
-This can be done with:
+Go to the backend root of the project (`{{cookiecutter.project_slug}}\backend`) and start the celery container: `make start_celery`. You will see that Celery will spawn little math tasks regularly as a test. You can find them `tasks.py` to remove them.
 
 ```bash
-make public
-make 1024
-```
-
-### Starting the containers in production mode
-
-Go to the backend root of the project (`{{cookiecutter.project_slug}}\backend`) and first (only to be done once) build the container with:
-
-```bash
-make build
-```
-
-Then start the container with:
-
-```bash
-make up
-```
-
-and shut it down with:
-
-```bash
-make down
+make start_celery
 ```
