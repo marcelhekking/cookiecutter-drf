@@ -1,3 +1,7 @@
+networks:
+  app_network:
+    driver: bridge
+
 services:
   web:
     image: ${WEB_IMAGE}
@@ -14,12 +18,16 @@ services:
       - DJANGO_SETTINGS_MODULE={{cookiecutter.project_slug}}.settings.production
     depends_on:
       - db
+    networks:
+      - app_network
   db:
     image: postgres:14.0-alpine
     volumes:
       - postgres_data:/var/lib/postgresql/data/
     env_file:
       - .env_var
+    networks:
+      - app_network
 
 volumes:
   postgres_data:
