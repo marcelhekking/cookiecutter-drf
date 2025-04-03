@@ -50,6 +50,8 @@ With Docker, you can start a container in production mode.
 
 ### First time running
 
+Go to the root of the project (`{{cookiecutter.project_slug}}\backend`) and run these commands:
+
 - Install dependencies: `uv sync`
 - Create public directory for mediafiles and staticfiles: `make public`
 - Create the build: `make build`
