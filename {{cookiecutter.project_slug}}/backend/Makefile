@@ -65,7 +65,7 @@ app_up:
 	docker compose -p {{cookiecutter.project_slug}} -f docker-compose.yml up -d
 
 app_down:
-	# assuming that environment variables are set with `export $(grep -v '^#' .env_var | xargs)`
+	# assuming environment variables are set with `export $(grep -v '^#' .env_var | xargs)`
 	docker compose -p {{cookiecutter.project_slug}} -f docker-compose.yml down
 
 app_sh:
