@@ -22,13 +22,12 @@ This repo is a cookiecutter template to create a Django restful API application 
 - [Ctrl-z](https://ctrl-z.readthedocs.io/en/latest/) for making backups of the [PostgreSQL](https://www.postgresql.org/) database
 - [Django Debug Toolbar](https://django-debug-toolbar.readthedocs.io/en/latest/) for...well...debugging
 
-
 ## How to install this template
 
 First install [uv](https://docs.astral.sh/uv/#installation) on your system and then run:
 
 ```bash
-uvx cookiecutter https://github.com/marcelhekking/cookiecutter-drf
+uvx cookiecutter gh:marcelhekking/cookiecutter-drf
 ```
 
 You'll be asked some questions about the project. After installation, read the README.md file of the just created project on how to further set things up. There are basically two ways to get the project running: one by using Docker and the other one by starting Django as a deveopment server.
