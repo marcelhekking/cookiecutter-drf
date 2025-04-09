@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     "django_celery_results",
     "rest_framework",  # utilities for rest apis
     "rest_framework.authtoken",  # token authentication
+    "drf_spectacular",
     # Django apps...
     "django.contrib.admin",
     "django.contrib.auth",
@@ -138,6 +139,7 @@ REST_FRAMEWORK = {
         "rest_framework.authentication.SessionAuthentication",
         "rest_framework.authentication.TokenAuthentication",
     ),
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
 }
 
 # Celery
@@ -151,3 +153,11 @@ CELERY_BROKER_URL = os.getenv(
 
 # this allows you to schedule items in the Django admin.
 CELERY_BEAT_SCHEDULER = "django_celery_beat.schedulers.DatabaseScheduler"
+
+# DRF Spectacular
+SPECTACULAR_SETTINGS = {
+    "TITLE": "{{cookiecutter.project_name}}",
+    "DESCRIPTION": "{{cookiecutter.description}}",
+    "VERSION": "1.0.0",
+    "SERVE_INCLUDE_SCHEMA": False,
+}
