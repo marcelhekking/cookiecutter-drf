@@ -24,7 +24,6 @@ install:
 	createdb $(DATABASE_NAME)
 	uv run manage.py migrate
 	uv run manage.py initadmin
-	uv run manage.py runserver
 
 makemigrations:
 	uv run manage.py makemigrations

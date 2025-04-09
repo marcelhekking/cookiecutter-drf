@@ -16,15 +16,15 @@ Go to the backend root of the project (`{{cookiecutter.project_slug}}\backend`) 
 make install
 ```
 
-Connect to the Django admin running on local host: `http://localhost:8000/admin/`. Login with name of the admin specified in `ADMINS` and the password `OnlyValidLocally`.
+#### Start Django development server locally
 
-#### Start Django development server locally after installation
-
-For subsequent starts of the local development server of Django use:
+For starting the local development server of Django use:
 
 ```bash
 make runserver
 ```
+
+Connect to the Django admin running on local host: `http://localhost:8000/admin/`. Login with name of the admin specified in `ADMINS` and the password `OnlyValidLocally`.
 
 ### Development
 
