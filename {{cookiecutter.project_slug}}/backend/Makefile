@@ -124,3 +124,12 @@ nginx_down:
 start: nginx_up up
 
 stop: nginx_down down
+
+
+#
+# API Documentation with Swagger
+#
+swagger:
+	uv run manage.py spectacular --color --file schema.yml
+	docker run -p 80:8080 -e SWAGGER_JSON=/schema.yml -v ${PWD}/schema.yml:/schema.yml swaggerapi/swagger-ui
+

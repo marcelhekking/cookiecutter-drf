@@ -10,6 +10,7 @@ This repo is a cookiecutter template to create a Django restful API application 
 - Documentation with [Sphinx](<https://www.sphinx-doc.org/en/master/>)
 - Dependency management with [uv](https://docs.astral.sh/uv/)
 - [Pre-commit](https://pre-commit.com/) hooks
+- [Drf-spectacular](https://drf-spectacular.readthedocs.io/en/latest/readme.html) to document your APIs according to the OpenAPI standard
 - A selection of [Make](https://www.gnu.org/software/make/) commands to control various aspect of the application
 - [Docker](https://www.docker.com/) and [docker compose](https://docs.docker.com/compose/) to start a production container locally
 - [Celery](https://github.com/celery/celery) and [Celery Beat](https://docs.celeryq.dev/en/latest/userguide/periodic-tasks.html) for kicking off periodic (asynchronous) tasks
