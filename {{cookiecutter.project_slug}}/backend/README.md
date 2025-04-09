@@ -65,10 +65,17 @@ Go to the root of the project (`{{cookiecutter.project_slug}}\backend`) and run 
 - Install dependencies: `uv sync`
 - Create public directory for mediafiles and staticfiles: `make public`
 - Create the build: `make build`
-- Start the containers: `make start`
+- Set environment variables: `export $(grep -v '^#' .env_var | xargs)`
+- Start Nginx and run the app: `make start`
 
-To stop and remove all containers: `make stop`
+Connect to the Django admin running on local host: `http://localhost/admin`. Login with name of the admin specified in `ADMINS` and the password `OnlyValidLocally`.
+
+To stop and remove all containers:
+
+- `make stop`
 
 ### Starting containers after first time running
 
-For subsequent starts of the containers use: `make start`
+For subsequent starts of the containers use:
+
+- `make start`

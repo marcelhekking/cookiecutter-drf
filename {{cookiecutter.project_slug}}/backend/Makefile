@@ -54,24 +54,24 @@ public:
 build:
 	sudo docker build -t {{cookiecutter.project_slug}}-web:latest -f Dockerfile .
 
-up:
+app_up_fish:
 	fish -c 'envsource .env_var; and docker compose -p {{cookiecutter.project_slug}} -f docker-compose.yml up -d'
 
-down:
+app_down_fish:
 	fish -c 'envsource .env_var; and docker compose -p {{cookiecutter.project_slug}} -f docker-compose.yml down'
 
-up_bash:
-	# assume that environment variables are set with `export $(grep -v '^#' .env_var | xargs)`
+app_up:
+	# assuming environment variables are set with `export $(grep -v '^#' .env_var | xargs)`
 	docker compose -p {{cookiecutter.project_slug}} -f docker-compose.yml up -d
 
-down_bash:
-	# assume that environment variables are set with `export $(grep -v '^#' .env_var | xargs)`
+app_down:
+	# assuming that environment variables are set with `export $(grep -v '^#' .env_var | xargs)`
 	docker compose -p {{cookiecutter.project_slug}} -f docker-compose.yml down
 
-sh:
+app_sh:
 	docker exec -it {{cookiecutter.project_slug}} sh
 
-shell:
+app_shell:
 	docker exec -it {{cookiecutter.project_slug}} python manage.py shell
 
 #
@@ -128,10 +128,13 @@ nginx_down:
 #
 # Docker / Nginx
 #
-start: nginx_up up
+start: nginx_up app_up
 
-stop: nginx_down down
+stop: nginx_down app_down
 
+start_fish: nginx_up app_up_fish
+
+stop_fish: nginx_down app_down_fish
 
 #
 # API Documentation with Swagger
