@@ -26,6 +26,16 @@ make runserver
 
 Connect to the Django admin running on local host: `http://localhost:8000/admin/`. Login with name of the admin specified in `ADMINS` and the password `OnlyValidLocally`.
 
+#### Start Celery and Redis
+
+You can start a container that spins op Celery and Redis which allows you to run (asynchronous) tasks.
+
+Go to the backend root of the project (`{{cookiecutter.project_slug}}\backend`) and start the celery container: `make start_celery`. You will see that Celery will spawn little math tasks regularly as a test. You can find them in `tasks.py` so you can remove them.
+
+```bash
+make start_celery
+```
+
 ### Development
 
 Ruff is used for Python formatting and linting. To prevent unstyled Python code to enter a Git repo, [pre-commit](https://pre-commit.com/) is used
@@ -62,13 +72,3 @@ To stop and remove all containers: `make stop`
 ### Starting containers after first time running
 
 For subsequent starts of the containers use: `make start`
-
-### Start Celery and Redis
-
-You can start a container that spins op Celery and Redis which allows you to run (asynchronous) tasks
-
-Go to the backend root of the project (`{{cookiecutter.project_slug}}\backend`) and start the celery container: `make start_celery`. You will see that Celery will spawn little math tasks regularly as a test. You can find them `tasks.py` to remove them.
-
-```bash
-make start_celery
-```

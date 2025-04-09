@@ -60,6 +60,14 @@ up:
 down:
 	fish -c 'envsource .env_var; and docker compose -p {{cookiecutter.project_slug}} -f docker-compose.yml down'
 
+up_bash:
+	# assume that environment variables are set with `export $(grep -v '^#' .env_var | xargs)`
+	docker compose -p {{cookiecutter.project_slug}} -f docker-compose.yml up -d
+
+down_bash:
+	# assume that environment variables are set with `export $(grep -v '^#' .env_var | xargs)`
+	docker compose -p {{cookiecutter.project_slug}} -f docker-compose.yml down
+
 sh:
 	docker exec -it {{cookiecutter.project_slug}} sh
 
