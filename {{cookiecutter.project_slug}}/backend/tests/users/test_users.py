@@ -2,7 +2,7 @@ import pytest
 from rest_framework.test import APIClient
 
 from tests.factories.users import UserFactory
-from tudcloud.users.models import User
+from {{cookiecutter.project_slug}}.users.models import User
 
 
 @pytest.fixture
