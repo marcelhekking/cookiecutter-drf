@@ -9,7 +9,6 @@ dependencies = [
     "ctrl-z>=1.5.1",
     "sentry-sdk>=2.24.1",
     "pytest==8.3.5",
-    "django-webtest>=1.9.12",
     "pytest-django>=4.10.0",
     "factory-boy>=3.3.3",
     "python-environ>=0.4.54",
