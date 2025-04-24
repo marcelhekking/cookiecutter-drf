@@ -28,13 +28,24 @@ Connect to the Django admin running on local host: `http://localhost:8000/admin/
 
 #### Start Celery and Redis
 
-You can start a container that spins op Celery and Redis which allows you to run (asynchronous) tasks.
+You can spin up a Redis container and a Celery worker which allows you to run (asynchronous) tasks.
 
-Go to the backend root of the project (`{{cookiecutter.project_slug}}\backend`) and start the celery container: `make start_celery`. You will see that Celery will spawn little math tasks regularly as a test. You can find them in `tasks.py` so you can remove them.
+Go to the backend root of the project (`{{cookiecutter.project_slug}}\backend`) and start the Redis container and a Celery worker with:
+
+```bash
+make redis_up
+make celery
+```
+
+or
 
 ```bash
 make start_celery
 ```
+
+You will see that Celery will spawn little math tasks regularly as a test. You can find them in `tasks.py` so you can remove them.
+
+CTRD-D to shutdown Celery and  `make redis_down` to stop and remove the Redis container.
 
 ### Development
 
