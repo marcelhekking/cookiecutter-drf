@@ -9,6 +9,8 @@ from rest_framework.authtoken.models import Token
 
 
 class User(AbstractUser):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+
     def __str__(self):
         return self.username
 
