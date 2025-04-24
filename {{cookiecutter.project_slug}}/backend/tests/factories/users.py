@@ -6,7 +6,6 @@ class UserFactory(factory.django.DjangoModelFactory):
         model = "users.User"
         django_get_or_create = ("username",)
 
-    id = factory.Faker("uuid4")
     username = factory.Sequence(lambda n: f"testuser{n}")
     email = factory.Faker("email")
     first_name = factory.Faker("first_name")
