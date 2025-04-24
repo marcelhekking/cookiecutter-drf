@@ -6,4 +6,4 @@ from .models import User
 
 @admin.register(User)
 class UserAdmin(UserAdmin):
-    pass
+    list_display = ("pk", "username", "email", "first_name", "last_name", "is_staff")
