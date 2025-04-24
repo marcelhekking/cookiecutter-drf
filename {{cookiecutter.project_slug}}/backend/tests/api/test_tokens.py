@@ -2,6 +2,7 @@ import pytest
 from django.urls import reverse
 from rest_framework.authtoken.models import Token
 from rest_framework.test import APIClient
+
 from tests.factories.users import UserFactory
 
 
