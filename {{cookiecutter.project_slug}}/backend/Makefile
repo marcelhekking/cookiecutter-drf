@@ -69,10 +69,10 @@ app_down:
 	docker compose -p {{cookiecutter.project_slug}} -f docker-compose.yml down
 
 app_sh:
-	docker exec -it {{cookiecutter.project_slug}} sh
+	docker exec -it {{cookiecutter.project_slug}}-web-1 sh
 
 app_shell:
-	docker exec -it {{cookiecutter.project_slug}} python manage.py shell
+	docker exec -it {{cookiecutter.project_slug}}-web-1 python manage.py shell
 
 #
 # Format / Lint targets
