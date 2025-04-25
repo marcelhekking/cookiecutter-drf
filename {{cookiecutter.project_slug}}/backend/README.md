@@ -1,8 +1,8 @@
-# Cookiecutter DRF
+# {{cookiecutter.project_name}}
 
 ## Introduction
 
-This part is the backend of the Cookiecutter DRF project.
+{{cookiecutter.description}}
 
 ## Installation and development
 
@@ -10,7 +10,7 @@ This part is the backend of the Cookiecutter DRF project.
 
 #### Install and run the Django development server locally for the first time
 
-Go to the backend root of the project (`{{cookiecutter.project_slug}}\backend`) and install all dependencies specified in the `pyproject.toml`, create the database, perform migrations, and create an initial superuser ( This is the person as specified in the `ADMINS` list in `base.py`) with the following make command:
+Go to the backend root of the project (`{{cookiecutter.project_slug}}/backend`) and install all dependencies specified in the `pyproject.toml`, create the database, perform migrations, and create an initial superuser ( This is the person as specified in the `ADMINS` list in `base.py`) with the following make command:
 
 ```bash
 make install
@@ -30,7 +30,7 @@ Connect to the Django admin running on local host: `http://localhost:8000/admin/
 
 You can spin up a Redis container and a Celery worker which allows you to run (asynchronous) tasks.
 
-Go to the backend root of the project (`{{cookiecutter.project_slug}}\backend`) and start the Redis container and a Celery worker with:
+Go to the backend root of the project (`{{cookiecutter.project_slug}}/backend`) and start the Redis container and a Celery worker with:
 
 ```bash
 make redis_up
@@ -53,7 +53,7 @@ Ruff is used for Python formatting and linting. To prevent unstyled Python code 
 
 #### Installing Pre-commit
 
-In the activated Python virtual environment, go to the root of the project (`{{cookiecutter.project_slug}}\backend`) and run:
+In the activated Python virtual environment, go to the root of the project (`{{cookiecutter.project_slug}}/backend`) and run:
 
 ```bash
 pre-commit install
@@ -71,7 +71,7 @@ With Docker, you can start a container in production mode.
 
 ### First time running
 
-Go to the root of the project (`{{cookiecutter.project_slug}}\backend`) and run these commands:
+Go to the root of the project (`{{cookiecutter.project_slug}}/backend`) and run these commands:
 
 - Install dependencies: `uv sync`
 - Create public directory for mediafiles and staticfiles: `make public`
