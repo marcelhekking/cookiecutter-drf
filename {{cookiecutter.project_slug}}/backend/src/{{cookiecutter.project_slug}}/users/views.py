@@ -44,3 +44,4 @@ class UserViewSet(
         is_creating_a_new_user = self.action == "create"
         if is_creating_a_new_user:
             return CreateUserSerializer
+        return self.serializer_class
