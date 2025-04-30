@@ -2,7 +2,6 @@
 
 from typing import List, Union
 
-from debug_toolbar.toolbar import debug_toolbar_urls
 from django.conf import settings
 from django.conf import settings
 from django.contrib import admin
@@ -38,4 +37,5 @@ if settings.DEBUG:
 
     # Serve debug toolbar is not in testing mode
     if not settings.TESTING:
+        from debug_toolbar.toolbar import debug_toolbar_urls
         urlpatterns += debug_toolbar_urls()
