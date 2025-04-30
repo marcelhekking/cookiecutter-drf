@@ -20,6 +20,6 @@ def create_auth_token(
     instance: Optional[AbstractUser] = None,
     created: bool = False,
     **kwargs: dict,
-) -> None
+) -> None:
     if created and instance is not None
         Token.objects.create(user=instance)
