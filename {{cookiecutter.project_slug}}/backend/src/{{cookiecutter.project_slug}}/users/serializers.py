@@ -6,23 +6,24 @@ from .models import User
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = (
+        fields: tuple[str, ...] = (
             "id",
             "username",
             "first_name",
             "last_name",
+            "url"
         )
-        read_only_fields = ("username",)
+        read_only_fields: tuple[str, ...] = ("username",)
 
 
 class CreateUserSerializer(serializers.ModelSerializer):
-    def create(self, validated_data):
-        user = User.objects.create_user(**validated_data)
+    def create(self, validated_data: dict[str, Any]) -> User:
+        user: User = User.objects.create_user(**validated_data)
         return user
 
     class Meta:
         model = User
-        fields = (
+        fields: tuple[str, ...] =
             "id",
             "username",
             "password",
@@ -31,5 +32,5 @@ class CreateUserSerializer(serializers.ModelSerializer):
             "email",
             "auth_token",
         )
-        read_only_fields = ("auth_token",)
-        extra_kwargs = {"password": {"write_only": True}}
+        read_only_fields: tuple[str, ...] = ("auth_token",)
+        extra_kwargs: dict[str, dict[str, bool]] = {"password": {"write_only": True}}

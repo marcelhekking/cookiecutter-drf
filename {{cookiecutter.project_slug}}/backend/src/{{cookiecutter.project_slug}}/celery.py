@@ -16,7 +16,7 @@ app.config_from_object("django.conf:settings", namespace="CELERY")
 app.autodiscover_tasks()
 
 # Example beat schedule. Replace with functional code
-app.conf.beat_schedule = {
+app.conf.beat_schedule = {  # type: dict[str, dict[str, Any]
     "multiply-task-crontab": {
         "task": "multiply_two_numbers",
         "schedule": crontab(hour=7, minute=30, day_of_week=1),

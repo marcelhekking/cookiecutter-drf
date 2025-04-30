@@ -1,5 +1,7 @@
 """{{cookiecutter.project_slug}} URL Configuration"""
 
+from typing import List, Union
+
 from django.conf import settings
 from django.contrib import admin
 from django.urls import include, path, re_path, reverse_lazy
@@ -13,7 +15,7 @@ router = DefaultRouter()
 router.register(r"users", UserViewSet)
 
 
-urlpatterns = [
+urlpatterns: List[Union[URLPattern, URLResolver]] = [
     path("get-token/", ObtainAuthToken.as_view(), name="get-token"),
     path("admin/", admin.site.urls),
     path("api/v1/", include(router.urls)),

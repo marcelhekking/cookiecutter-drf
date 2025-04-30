@@ -5,7 +5,7 @@ from {{cookiecutter.project_slug}}.users.models import User
 
 
 class Command(BaseCommand):
-    def handle(self, *args, **options):
+    def handle(self, *args: Any, **options: dict[str, Any]) -> None
         if User.objects.count() == 0:
             for user in settings.ADMINS:
                 username = user[0].replace(" ", "")
