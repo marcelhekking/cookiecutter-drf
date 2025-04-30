@@ -4,7 +4,7 @@ from typing import List, Union
 
 from django.conf import settings
 from django.contrib import admin
-from django.urls import include, path, re_path, reverse_lazy
+from django.urls import URLPattern, URLResolver, include, path, re_path, reverse_lazy
 from django.views.generic.base import RedirectView
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.routers import DefaultRouter
