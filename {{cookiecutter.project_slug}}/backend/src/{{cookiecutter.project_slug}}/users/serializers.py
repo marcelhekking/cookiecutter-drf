@@ -1,3 +1,5 @@
+from typing import Any
+
 from rest_framework import serializers
 
 from .models import User
@@ -23,7 +25,7 @@ class CreateUserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields: tuple[str, ...] =
+        fields: tuple[str, ...] = (
             "id",
             "username",
             "password",

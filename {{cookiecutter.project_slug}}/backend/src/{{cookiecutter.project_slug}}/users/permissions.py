@@ -8,7 +8,7 @@ class IsUserOrCreatingAccountOrReadOnly(permissions.BasePermission):
     """
 
     def has_object_permission(self, request: Request, view: View, obj: Any) -> bool:
-        user_is_making_new_account = getattr(view, "action", None) == "create
+        user_is_making_new_account = getattr(view, "action", None) == "create"
         if user_is_making_new_account:
             return True
 
