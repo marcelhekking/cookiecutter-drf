@@ -19,3 +19,16 @@ LOGGING = {  # noqa
         "propagate": True,
     },
 }
+
+
+# Debug Toolbar
+if not TESTING:
+    # only install debug toolbar if not testing
+    INSTALLED_APPS = [
+        *INSTALLED_APPS,
+        "debug_toolbar",
+    ]
+    MIDDLEWARE = [
+        "debug_toolbar.middleware.DebugToolbarMiddleware",
+        *MIDDLEWARE,
+    ]
