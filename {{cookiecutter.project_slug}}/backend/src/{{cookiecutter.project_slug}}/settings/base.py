@@ -4,9 +4,8 @@ Django settings for {{cookiecutter.project_slug}} Website.
 """
 
 import os
+import sys
 from pathlib import Path
-
-from django.urls import reverse_lazy
 
 # Automatically figure out the ROOT_DIR and PROJECT_DIR.
 path = Path(__file__)
@@ -17,7 +16,10 @@ ROOT_DIR = DJANGO_PROJECT_DIR.parent.parent
 
 
 ADMINS = [
-    ("{{cookiecutter.author_first_name.lower()}}", "{{cookiecutter.author_email.lower()}}"),
+    (
+        "{{cookiecutter.author_first_name.lower()}}",
+        "{{cookiecutter.author_email.lower()}}",
+    ),
 ]
 
 SECRET_KEY = os.getenv("SECRET_KEY", "a key")
@@ -161,3 +163,23 @@ SPECTACULAR_SETTINGS = {
     "VERSION": "1.0.0",
     "SERVE_INCLUDE_SCHEMA": False,
 }
+
+# Debug Toolbar
+INTERNAL_IPS = [
+    "127.0.0.1",
+]
+
+# Define a flag to check if tests are running
+TESTING = any(True for arg in sys.argv if "test" in arg) or any(
+    True for arg in sys.argv if "pytest" in arg
+)
+
+if not TESTING:
+    INSTALLED_APPS = [
+        *INSTALLED_APPS,
+        "debug_toolbar",
+    ]
+    MIDDLEWARE = [
+        "debug_toolbar.middleware.DebugToolbarMiddleware",
+        *MIDDLEWARE,
+    ]

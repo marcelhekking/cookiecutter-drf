@@ -2,6 +2,8 @@
 
 from typing import List, Union
 
+from debug_toolbar.toolbar import debug_toolbar_urls
+from django.conf import settings
 from django.conf import settings
 from django.contrib import admin
 from django.urls import URLPattern, URLResolver, include, path, re_path, reverse_lazy
@@ -33,3 +35,7 @@ if settings.DEBUG:
     # Serve static and media files from development server
     urlpatterns += staticfiles_urlpatterns()
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+    # Serve debug toolbar is not in testing mode
+    if not settings.TESTING:
+        urlpatterns += debug_toolbar_urls()
