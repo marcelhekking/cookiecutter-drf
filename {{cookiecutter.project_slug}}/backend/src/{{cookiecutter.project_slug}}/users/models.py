@@ -21,5 +21,5 @@ def create_auth_token(
     created: bool = False,
     **kwargs: dict,
 ) -> None:
-    if created and instance is not None
+    if created and instance is not None:
         Token.objects.create(user=instance)
