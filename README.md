@@ -15,6 +15,7 @@ This repo is a cookiecutter template to create a Django restful API application 
 - [Docker](https://www.docker.com/) and [docker compose](https://docs.docker.com/compose/) to start a production container locally
 - [Celery](https://github.com/celery/celery) and [Celery Beat](https://docs.celeryq.dev/en/latest/userguide/periodic-tasks.html) for kicking off periodic (asynchronous) tasks
 - [Django Celery Results](https://github.com/celery/django-celery-results) for capturing Celery tasks in the database
+- [Flower](https://flower.readthedocs.io/en/latest/) via a container for monitoring Celery tasks
 - [Redis](https://redis.io/) via a container
 - [Nginx](https://nginx.org/) via a container to function as a reverse-proxy for the [Gunicorn](https://gunicorn.org/) Django server upstreams
 - [Ruff](https://docs.astral.sh/ruff/) for Python linting and formatting

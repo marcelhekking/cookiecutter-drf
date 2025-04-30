@@ -26,7 +26,7 @@ make runserver
 
 Connect to the Django admin running on local host: `http://localhost:8000/admin/`. Login with name of the admin specified in `ADMINS` and the password `OnlyValidLocally`.
 
-#### Start Celery and Redis
+#### Start Celery / Redis / Flower
 
 You can spin up a Redis container and a Celery worker which allows you to run (asynchronous) tasks.
 
@@ -43,9 +43,19 @@ or
 make start_celery
 ```
 
-You will see that Celery will spawn little math tasks regularly as a test. You can find them in `tasks.py` so you can remove them.
+You will see that Celery will spawn little math tasks regularly as a test.
 
-CTRD-D to shutdown Celery and  `make redis_down` to stop and remove the Redis container.
+You can start Flower in a container to monitor these Celery tasks:
+
+```bash
+make flower_up
+```
+
+and then got to `http://localhost:5555/`.
+
+These test tasks can be found in the `tasks.py` file so you can eventually remove them.
+
+CTRD-D to shutdown Celery and  `make redis_down` to stop and remove the Redis container. Also `make flower_down` to remove the Flower container.
 
 ### Development
 
