@@ -20,4 +20,4 @@ def mul(x: int, y: int) -> int:
 
 @shared_task(name="sum_list_numbers")
 def xsum(numbers: List[int]) -> int:
-    return sum(numbers
+    return sum(numbers)
