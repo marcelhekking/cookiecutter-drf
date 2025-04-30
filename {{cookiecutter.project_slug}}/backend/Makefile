@@ -103,7 +103,7 @@ ruff_fix:
 	uv run ruff check src tests --target-version=py313 --exclude=migrations --fix
 
 #
-# Celery / Redis
+# Celery / Redis / Flower
 #
 celery:
 	celery -A {{cookiecutter.project_slug}} worker -l info --beat
@@ -115,6 +115,13 @@ redis_down:
 	docker compose -p {{cookiecutter.project_slug}} -f docker-compose-redis-only.yml down
 
 start_celery: redis_up celery
+
+flower_up:
+	docker compose -p {{cookiecutter.project_slug}} -f docker-compose-flower-only.yml up -d
+
+flower_down:
+	docker compose -p {{cookiecutter.project_slug}} -f docker-compose-flower-only.yml down
+
 
 #
 # Nginx

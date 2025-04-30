@@ -1,0 +1,14 @@
+services:
+  flower:
+    image: mher/flower
+    container_name: flower
+    networks:
+      - {{cookiecutter.project_slug}}_default
+    ports:
+      - "5555:5555"
+    environment:
+      - CELERY_BROKER_URL=redis://{{cookiecutter.project_slug}}-cache-1:6379/0
+
+networks:
+  {{cookiecutter.project_slug}}_default:
+    external: true
