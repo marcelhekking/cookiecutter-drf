@@ -12,7 +12,7 @@ class User(AbstractUser):
     username: str
 
     def __str__(self) -> str:
-        return self.usernam
+        return self.username
 
 
 @receiver(post_save, sender=settings.AUTH_USER_MODEL)
