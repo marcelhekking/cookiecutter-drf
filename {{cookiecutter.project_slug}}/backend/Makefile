@@ -35,7 +35,7 @@ runserver:
 	uv run manage.py runserver
 
 test:
-	uv run pytest tests/ -vvv
+	uv run pytest tests/
 
 #
 # Docker
